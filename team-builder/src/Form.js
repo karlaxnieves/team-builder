@@ -27,9 +27,8 @@ export default function teamMemberForm(props) {
                 type="text"
                 name="name"
                 onChange={onChange}
-                value={values.username}
+                value={values.name}
                 placeholder="type your name"
-                maxLength="30"
               />
             </label>
     
@@ -63,6 +62,5 @@ export default function teamMemberForm(props) {
           </div>
         </form>
       );
-
 
 }

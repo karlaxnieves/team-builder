@@ -2,6 +2,7 @@
 import './App.css';
 import React, { useState, useEffect } from "react";
 import Form from './Form'
+import Member from './Member'
 
 
 const initialFormValues = {
@@ -13,16 +14,13 @@ const initialFormValues = {
 
 export default function App() {
   const [teamMembers, setTeamMembers] = useState([]);
-
-
-
   const [formValues, setFormValues] = useState(initialFormValues);
 
 
-  const updateForm = (inputName, inputValue) => {
+  const updateForm = (name, value) => {
     setFormValues({
       ...formValues,
-      [inputName]: inputValue,
+      [name]: value,
     });
   }
 
@@ -31,17 +29,24 @@ export default function App() {
     const newMember = {
       name: formValues.name.trim(),
       email: formValues.email.trim(),
-      role: formValues.role
+      role: formValues.role.trim(),
     };
 
 
     if (!newMember.name || !newMember.email || !newMember.role) return;
+
+    setTeamMembers([newMember, ...teamMembers]);
+    setFormValues(initialFormValues);
+
   }
 
 
   return (
-    <div className="containber">
-      <h1>Team Member App</h1>
+    <div className="App">
+
+      {teamMembers.map((member) => {
+        return <Member key={member.name} details={member} />
+      })}
       <Form
         values={formValues}
         update={updateForm}
@@ -50,6 +55,9 @@ export default function App() {
 
     </div>
   );
+
+
 }
+
 
 
