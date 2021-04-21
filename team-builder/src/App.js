@@ -1,6 +1,7 @@
 
 import './App.css';
 import Form from './Form'
+import Member from './Member'
 import React, { useState, useEffect } from 'react'
 
 
@@ -32,10 +33,11 @@ export default function App() {
   }
 
 
-
-
   return (
     <div className="App">
+      {member.map((members) => {
+        return <Member key={members.name} details={members} />
+      })}
       <Form
         values={formValues}
         update={updateForm}
